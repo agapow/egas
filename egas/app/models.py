@@ -10,7 +10,7 @@ AuditMixin will add automatic timestamp of created and modified by who
 ### IMPORTS
 
 from flask.ext.appbuilder import Model
-from flask.ext.appbuilder.models.mixins import AuditMixin, FileColumn, ImageColumn
+from flask.ext.appbuilder.models.mixins import AuditMixin
 from sqlalchemy import Column, Integer, String, Enum, Float
 from sqlalchemy import UniqueConstraint
 
@@ -19,11 +19,12 @@ from . import consts
 
 ### CODE ###
 
-class Association (Model):
+class Association (AuditMixin, Model):
    __tablename__ = 'associations'
 
    ## Properties:
    snp_id = Column (String (16), nullable=False, primary_key=True)
+   
    snp_locn_chr = Column (Enum (consts.Chromosome), nullable=False)
    snp_locn_posn = Column (Integer, nullable=False)
    snp_base_wild = Column (String (1), nullable=False)
