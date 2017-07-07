@@ -5,7 +5,7 @@
 from flask_appbuilder import Model
 from flask_appbuilder.models.mixins import AuditMixin
 from sqlalchemy import Column, Integer, String, Enum, Float
-from sqlalchemy import UniqueConstraint
+#from sqlalchemy import UniqueConstraint
 
 from . import consts
 
@@ -28,13 +28,14 @@ class Association (AuditMixin, Model):
    id = Column (String (48), primary_key=True, default=gen_assoc_id)
 
    snp_id = Column (String (16), nullable=False)
-   snp_locn_chr = Column (Enum (consts.Chromosome), nullable=False)
+   snp_locn_chr = Column (Enum (*consts.chromosomes), nullable=False)
    snp_locn_posn = Column (Integer, nullable=False)
+
    snp_base_wild = Column (String (1), nullable=False)
    snp_base_var = Column (String (1), nullable=False)
 
    cpg_id = Column (String (16), nullable=False)
-   cpg_locn_chr = Column (Enum (consts.Chromosome), nullable=False)
+   cpg_locn_chr = Column (Enum (*consts.chromosomes), nullable=False)
    cpg_locn_posn = Column (Integer, nullable=False)
 
    stat_beta = Column (Float)

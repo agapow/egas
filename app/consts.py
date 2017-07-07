@@ -10,32 +10,50 @@ import enum
 
 ### CONSTANTS & DEFINES
 
-class Chromosome (enum.Enum):
-   chr1 = "1"
-   chr2 = "2"
-   chr3 = "3"
-   chr4 = "4"
-   chr5 = "5"
-   chr6 = "6"
-   chr7 = "7"
-   chr8 = "8"
-   chr9 = "9"
-   chr10 = "10"
-   chr11 = "11"
-   chr12 = "12"
-   chr13 = "13"
-   chr14 = "14"
-   chr15 = "15"
-   chr16 = "16"
-   chr17 = "17"
-   chr18 = "18"
-   chr19 = "19"
-   chr20 = "20"
-   chr21 = "21"
-   chr22 = "22"
-   chrX = "X"
-   chrY = "Y"
+chromosomes = (
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "9",
+   "10",
+   "11",
+   "12",
+   "13",
+   "14",
+   "15",
+   "16",
+   "17",
+   "18",
+   "19",
+   "20",
+   "21",
+   "22",
+   "X",
+   "Y",
+)
 
+bases = (
+   'A',
+   'C',
+   'G',
+   'T', # OR U?
+   'R', # A or G
+   'Y', # C or T
+   'S', # G or C
+   'W', # A or T
+   'K', # G or T
+   'M', # A or C
+   'B', # C or G or T
+   'D', # A or G or T
+   'H', # A or C or T
+   'V', # A or C or G
+   # 'N',
+)
 
 ### CODE ###
 
