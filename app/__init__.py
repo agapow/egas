@@ -30,7 +30,7 @@ manager = Manager (app)
 manager.add_command('db', MigrateCommand)
 
 # build the models and views
-from app import models, views
+from app import models, views, admin
 
 
 ### END ###

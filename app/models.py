@@ -4,13 +4,22 @@
 
 from flask_appbuilder import Model
 from flask_appbuilder.models.mixins import AuditMixin
-from sqlalchemy import Column, Integer, String, Enum, Float
+from sqlalchemy import Table, ForeignKey, Column, Integer, String, Enum, Float
+from sqlalchemy.orm import relationship
+
 #from sqlalchemy import UniqueConstraint
 
 from . import consts
 
 
 ### CODE ###
+
+## Linkintg table for assictaion sets
+set_membership_table = Table ('set_membership', Model.metadata,
+   Column ('id', Integer, primary_key=True),
+   Column ('assoc_id', String(48), ForeignKey ('associations.id')),
+   Column ('set_id', Integer, ForeignKey ('sets.id'))
+)
 
 def gen_assoc_id (context):
    return "%s.%s" % (context.current_parameters['snp_id'],
@@ -41,6 +50,26 @@ class Association (AuditMixin, Model):
    stat_beta = Column (Float)
    stat_stderr = Column (Float)
    stat_pval = Column (Float)
+
+   sets = relationship ('AssocSet', secondary=set_membership_table, backref='association')
+
+   def __repr__(self):
+     return self.id
+
+
+
+class AssocSet (AuditMixin, Model):
+   """
+   A group of associations.
+   """
+
+   __tablename__ = 'sets'
+
+   ## Properties:
+   id = Column (Integer, autoincrement=True, primary_key=True)
+
+   title = Column (String (64), nullable=False)
+   description = Column (String())
 
    def __repr__(self):
      return self.id

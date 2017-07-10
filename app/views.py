@@ -8,8 +8,10 @@ Views for application models and pages.
 from flask import render_template
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder import ModelView
+from wtforms import validators as wtfval
+
 from app import appbuilder, db
-from wtforms import validators
+from app import validators as appval
 
 from . import models
 
@@ -56,8 +58,8 @@ class AssociationModelView (ModelView):
 
    # friendly name for columns
    label_columns = {
-      'snp_id': 'SNP id',
-      'snp_locn_chr': 'SNP chromosome',
+      'title': 'SNP id',
+      'description': 'SNP chromosome',
       'snp_locn_posn': 'SNP position',
       'snp_base_wild': 'Wild base',
       'snp_base_var': 'Variant base',
@@ -102,18 +104,55 @@ class AssociationModelView (ModelView):
    ## validation
    validators_columns = {
       'snp_base_wild': [
-         validators.EqualTo ('snp_base_var',
-            message=gettext ('wild and variant bases cannot match')
+         appval.NotEqualTo ('snp_base_var',
+            message='wild and variant bases cannot match'
          )
       ]
    }
 
 
+## ASSOCIATION SETS
 
+SET_COLS = [
+   'title',
+   'description',
+]
+
+class SetModelView (ModelView):
+   """
+   A group of associations.
+   """
+   # TODO: ensure wild and variant bases are different
+
+   datamodel = SQLAInterface (models.AssocSet)
+
+   # route to nicer url
+   route_base = '/sets'
+
+   # friendly name for columns
+   label_columns = {
+      'title': 'Title',
+      'description': 'Description',
+   }
+
+   ## Listing / showing
+   # what columns appear in a table/list & the order
+   list_columns = ['title']
+   base_order = ('title','asc')
+
+   ## Adding / editing
+   # what columns are visible in add/edit
+   add_columns = SET_COLS
+   edit_columns = SET_COLS
+
+
+
+## Registration and coordination
 # create and register everything
 db.create_all()
 
 appbuilder.add_view (AssociationModelView, "Associations", icon="fa-file-o")
+appbuilder.add_view (SetModelView, "Sets", icon="folder-open-o")
 
 # fa-exchange
 
