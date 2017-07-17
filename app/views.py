@@ -107,7 +107,15 @@ class AssociationModelView (ModelView):
          appval.NotEqualTo ('snp_base_var',
             message='wild and variant bases cannot match'
          )
-      ]
+      ],
+
+      'snp_locn_posn': [appval.PositiveNumber()],
+      'cpg_locn_posn': [appval.PositiveNumber()],
+
+      'stat_beta': [appval.PositiveNumber()],
+      'stat_stderr': [appval.PositiveNumber()],
+      'stat_pval': [appval.PositiveNumber()],
+
    }
 
 
@@ -138,12 +146,47 @@ class SetModelView (ModelView):
    ## Listing / showing
    # what columns appear in a table/list & the order
    list_columns = ['title']
-   base_order = ('title','asc')
+   base_order = ('created_on','asc')
 
    ## Adding / editing
    # what columns are visible in add/edit
    add_columns = SET_COLS
    edit_columns = SET_COLS
+
+
+
+## ASSOCIATION SETS
+
+SET_COLS = [
+   'title',
+   'description',
+]
+
+class NewsModelView (ModelView):
+   """
+   Newsitems & updates.
+   """
+
+   datamodel = SQLAInterface (models.News)
+
+   # route to nicer url
+   route_base = '/news'
+
+   # friendly name for columns
+   label_columns = {
+      'title': 'Title',
+      'description': 'Description',
+   }
+
+   ## Listing / showing
+   # what columns appear in a table/list & the order
+   list_columns = ['title']
+   base_order = ('title','asc')
+
+   ## Adding / editing
+   # what columns are visible in add/edit
+   #add_columns = SET_COLS
+   #edit_columns = SET_COLS
 
 
 
@@ -153,6 +196,7 @@ db.create_all()
 
 appbuilder.add_view (AssociationModelView, "Associations", icon="fa-file-o")
 appbuilder.add_view (SetModelView, "Sets", icon="folder-open-o")
+appbuilder.add_view (NewsModelView, "News", icon="newspaper-o")
 
 # fa-exchange
 

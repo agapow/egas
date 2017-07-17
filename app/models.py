@@ -75,4 +75,20 @@ class AssocSet (AuditMixin, Model):
      return self.id
 
 
+class News (AuditMixin, Model):
+   """
+   News items and updates for the website.
+   """
+
+   __tablename__ = 'sets'
+
+   ## Properties:
+   id = Column (Integer, autoincrement=True, primary_key=True)
+   title = Column (String (64), nullable=False)
+   body = Column (String(), nullable=False)
+
+   def __repr__(self):
+     return self.id
+
+
 ### END ###
