@@ -97,10 +97,10 @@ class PositiveNumber (GreaterThan):
    Just uses the GreaterThan machinery.
 
 	"""
-	def __init__(self, lower_bound, message=None):
+	def __init__(self, message=None):
 		if not message:
 			message = "Field should be a positive number"
-		super (GreaterThan, self).__init__(lower_bound=0,
+		super (PositiveNumber, self).__init__(lower_bound=0,
 			message=message)
 
 

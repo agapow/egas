@@ -126,20 +126,20 @@ SET_COLS = [
    'description',
 ]
 
-class SetModelView (ModelView):
+class TagModelView (ModelView):
    """
    A group of associations.
    """
    # TODO: ensure wild and variant bases are different
 
-   datamodel = SQLAInterface (models.AssocSet)
+   datamodel = SQLAInterface (models.Tag)
 
    # route to nicer url
-   route_base = '/sets'
+   route_base = '/tags'
 
    # friendly name for columns
    label_columns = {
-      'title': 'Title',
+      'title': 'Name',
       'description': 'Description',
    }
 
@@ -195,7 +195,7 @@ class NewsModelView (ModelView):
 db.create_all()
 
 appbuilder.add_view (AssociationModelView, "Associations", icon="fa-file-o")
-appbuilder.add_view (SetModelView, "Sets", icon="folder-open-o")
+appbuilder.add_view (TagModelView, "Tags", icon="folder-open-o")
 appbuilder.add_view (NewsModelView, "News", icon="newspaper-o")
 
 # fa-exchange

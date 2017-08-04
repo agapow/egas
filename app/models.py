@@ -14,11 +14,10 @@ from . import consts
 
 ### CODE ###
 
-## Linkintg table for assictaion sets
-set_membership_table = Table ('set_membership', Model.metadata,
-   Column ('id', Integer, primary_key=True),
+## Linking table between tags and associations
+tag_membership_table = Table ('tag_membership', Model.metadata,
    Column ('assoc_id', String(48), ForeignKey ('associations.id')),
-   Column ('set_id', Integer, ForeignKey ('sets.id'))
+   Column ('tag_id', Integer, ForeignKey ('tags.id'))
 )
 
 def gen_assoc_id (context):
@@ -51,25 +50,27 @@ class Association (AuditMixin, Model):
    stat_stderr = Column (Float)
    stat_pval = Column (Float)
 
-   sets = relationship ('AssocSet', secondary=set_membership_table, backref='association')
+   tags = relationship ('Tag', secondary=tag_membership_table, back_populates='associations')
 
    def __repr__(self):
      return self.id
 
 
 
-class AssocSet (AuditMixin, Model):
+class Tag (AuditMixin, Model):
    """
-   A group of associations.
+   A group of associations, implemented as tagging.
    """
 
-   __tablename__ = 'sets'
+   __tablename__ = 'tags'
 
    ## Properties:
    id = Column (Integer, autoincrement=True, primary_key=True)
 
    title = Column (String (64), nullable=False)
    description = Column (String())
+
+   associations = relationship ('Association', secondary=tag_membership_table, back_populates='tags')
 
    def __repr__(self):
      return self.id
@@ -80,7 +81,7 @@ class News (AuditMixin, Model):
    News items and updates for the website.
    """
 
-   __tablename__ = 'sets'
+   __tablename__ = 'news'
 
    ## Properties:
    id = Column (Integer, autoincrement=True, primary_key=True)

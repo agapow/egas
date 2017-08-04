@@ -31,7 +31,7 @@ class AdminView (BaseView):
 appbuilder.add_view (AdminView, "Upload", category='Admin')
 
 
-from wtforms import Form, StringField
+from wtforms import Form, StringField, FileField, BooleanField
 from wtforms.validators import DataRequired
 from flask_appbuilder.fieldwidgets import BS3TextFieldWidget
 from flask_appbuilder.forms import DynamicForm
