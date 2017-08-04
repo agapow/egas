@@ -198,6 +198,9 @@ appbuilder.add_view (AssociationModelView, "Associations", icon="fa-file-o")
 appbuilder.add_view (TagModelView, "Tags", icon="folder-open-o")
 appbuilder.add_view (NewsModelView, "News", icon="newspaper-o")
 
+# cleans up permissions from obselete views
+appbuilder.security_cleanup()
+
 # fa-exchange
 
 ### END ###
