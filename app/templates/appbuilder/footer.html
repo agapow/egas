@@ -1,13 +1,16 @@
 <div class="row img-rounded">
     <hr><small>
-<div class="col-md-4">
-
-</div>
-<div class="col-md-4">fghfgh
-</div>
-<div class="col-md-4">
-   Designed by Paul Agapow of the Data Science Institute,
-   Imperial College London, 2017. Code available on
-   <A href="http://github.com/agapow/egas">github</A>. 
-</div>
+   <div class="col-md-4">
+      Version {{ config.APP_VERSION }}.
+      Created by Paul Agapow of the Data Science Institute,
+      Imperial College London, 2017. Code available on
+      <A href="http://github.com/agapow/egas">github</A>.
+   </div>
+   <div class="col-md-4">
+   one
+   </div>
+   <div class="col-md-4">
+      <b>Latest news:</b>
+      {%  News.query.order_by ('created_on desc').limit(1) %}
+   </div>
 </div>

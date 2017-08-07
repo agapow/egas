@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 #from sqlalchemy import UniqueConstraint
 
 from . import consts
+from . import utils
 
 
 ### CODE ###
@@ -53,7 +54,7 @@ class Association (AuditMixin, Model):
    tags = relationship ('Tag', secondary=tag_membership_table, back_populates='associations')
 
    def __repr__(self):
-     return self.id
+     return utils.simple_repr (self, 'id', 'snp_id', 'cpg_id')
 
 
 
@@ -73,7 +74,8 @@ class Tag (AuditMixin, Model):
    associations = relationship ('Association', secondary=tag_membership_table, back_populates='tags')
 
    def __repr__(self):
-     return self.id
+     return utils.simple_repr (self, 'id', 'title', 'description')
+
 
 
 class News (AuditMixin, Model):
@@ -88,8 +90,12 @@ class News (AuditMixin, Model):
    title = Column (String (64), nullable=False)
    body = Column (String(), nullable=False)
 
+   ## Accessors:
+
+   ## Utils:
    def __repr__(self):
-     return self.id
+     return utils.simple_repr (self, 'id', 'title', 'body')
+
 
 
 ### END ###
