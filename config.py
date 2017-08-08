@@ -2,6 +2,9 @@ import os
 from flask_appbuilder.security.manager import AUTH_OID, AUTH_REMOTE_USER, AUTH_DB, AUTH_LDAP, AUTH_OAUTH
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
+APP_VERSION = '0.5'
+
 # Your App secret key
 SECRET_KEY = 'd64C<VkCcEf*`0<J;W`={1*F/pq$Ia~-gh[d4>#SAf9ix 3yy`FT/klHGP~7Q?7%'
 
@@ -22,7 +25,7 @@ CSRF_ENABLED = True
 APP_NAME = "EpAs"
 
 # Uncomment to setup Setup an App icon
-#APP_ICON = "static/img/logo.jpg"
+APP_ICON = "static/img/logo.png"
 
 #----------------------------------------------------
 # AUTHENTICATION CONFIG
@@ -91,15 +94,15 @@ IMG_UPLOAD_URL = '/static/uploads/'
 # these are located on static/appbuilder/css/themes
 # you can create your own and easily use them placing them on the same dir structure to override
 #APP_THEME = "bootstrap-theme.css"  # default bootstrap
-#APP_THEME = "cerulean.css"
-#APP_THEME = "amelia.css"
-#APP_THEME = "cosmo.css"
-#APP_THEME = "cyborg.css"
-#APP_THEME = "flatly.css"
-#APP_THEME = "journal.css"
-#APP_THEME = "readable.css"
-#APP_THEME = "simplex.css"
-#APP_THEME = "slate.css"
-#APP_THEME = "spacelab.css"
-#APP_THEME = "united.css"
-#APP_THEME = "yeti.css"
+#APP_THEME = "cerulean.css" # dark blue header
+#APP_THEME = "amelia.css"  # striking aqua & yellow
+#APP_THEME = "cosmo.css"   # light blue
+#APP_THEME = "cyborg.css"  # dark/inverse
+#APP_THEME = "flatly.css"   # green header
+#APP_THEME = "journal.css" # red header, soft fonts
+APP_THEME = "readable.css" # all white, crisp
+#APP_THEME = "simplex.css" # bright red header, soft fonts
+#APP_THEME = "slate.css" # grey header inverse
+#APP_THEME = "spacelab.css" # classic dark blue header
+#APP_THEME = "united.css" # magenta header
+#APP_THEME = "yeti.css"  # blue header
