@@ -22,7 +22,7 @@ logging.basicConfig (format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel (logging.DEBUG)
 
 # application configuration
-app = Flask(__name__)
+app = Flask (__name__)
 app.config.from_object ('config')
 db = SQLA (app)
 
@@ -30,7 +30,7 @@ appbuilder = AppBuilder (app, db.session)
 
 migrate = Migrate (app, db)
 manager = Manager (app)
-manager.add_command('db', MigrateCommand)
+manager.add_command ('db', MigrateCommand)
 
 # build the models and views
 from app import models, views, admin, utils

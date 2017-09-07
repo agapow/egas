@@ -7,10 +7,9 @@
       <A href="http://github.com/agapow/egas">github</A>.
    </div>
    <div class="col-md-4">
-   one
+      <b>Total number of associations currently stored:</b> {{ get_total_associations() }}
    </div>
    <div class="col-md-4">
-      <b>Latest news:</b>
-      {%  News.query.order_by ('created_on desc').limit(1) %}
+      <b>Latest news:</b>  {{ get_latest_news() }}
    </div>
 </div>

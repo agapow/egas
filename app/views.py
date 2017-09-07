@@ -175,19 +175,45 @@ class NewsModelView (ModelView):
    # friendly name for columns
    label_columns = {
       'title': 'Title',
-      'description': 'Description',
+      'body': 'Description',
    }
 
    ## Listing / showing
    # what columns appear in a table/list & the order
    list_columns = ['title']
-   base_order = ('title','asc')
+   base_order = ('created_on','asc')
 
    ## Adding / editing
    # what columns are visible in add/edit
-   #add_columns = SET_COLS
-   #edit_columns = SET_COLS
+   add_columns = ['title', 'body']
+   edit_columns = ['title', 'body']
 
+
+
+"""
+Static, public pages.
+
+"""
+
+### IMPORTS
+
+from flask_appbuilder import expose, BaseView
+
+
+class AboutView (BaseView):
+   route_base = "/about"
+
+   default_view = 'about'
+
+   @expose('/')
+   def about (self):
+      # just show an about page
+      self.update_redirect()
+      return self.render_template ('about.html')
+
+
+
+appbuilder.add_view (AboutView, "About this site", category='About')
 
 
 ## Registration and coordination

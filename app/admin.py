@@ -41,18 +41,19 @@ def make_upload_set_name():
    current_dt = strftime("%Y-%m-%d %H:%M:%S", gmtime())
    return "Uploaded %s" % current_dt
 
+
 class BulkUploadForm (DynamicForm):
+   """
+   Form object / contents for bulk uploading of associations.
+   """
 
    upload_file = FileField (('Association file'),
       description=('CSV file of association data in prescribed format'),
       validators = [DataRequired()],
    )
-   makeset = BooleanField (('Create set'),
-      description=('Assemble all uploaded data into '),
-      default=True,
-   )
+
    set_name = StringField (('Set name'),
-      description=('Name for the set (if created)'),
+      description=('Name for the set'),
       default=make_upload_set_name(),
    )
    overwrite = BooleanField (('Overwrite pre-existing associations'),
@@ -63,5 +64,27 @@ class BulkUploadForm (DynamicForm):
       description=("Don't create or commit new data, just check for errors"),
       default=True,
    )
+
+from flask import flash
+from flask_appbuilder import SimpleFormView
+
+class MyFormView (SimpleFormView):
+    form = BulkUploadForm
+    form_title = 'This is my first form view'
+    message = 'My form was submitted'
+
+    def form_get(self, form):
+        form.field1.data = 'This was prefilled'
+
+    def form_post(self, form):
+        # post process form
+        flash (self.message, 'info')
+
+
+appbuilder.add_view (MyFormView, "My form View", icon="fa-group",
+   label='My form View',
+   category="My Forms", category_icon="fa-cogs"
+)
+
 
 ### END ###
