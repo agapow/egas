@@ -12,7 +12,7 @@ from flask_migrate import Migrate, MigrateCommand
 
 ### CONSTANTS & DEFINES
 
-__version__ = "0.5"
+__version__ = "0.6"
 
 
 ### CODE ###
@@ -33,7 +33,7 @@ manager = Manager (app)
 manager.add_command ('db', MigrateCommand)
 
 # build the models and views
-from app import models, views, admin, utils
+from . import models, views, admin, utils
 
 
 ### END ###

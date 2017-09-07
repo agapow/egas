@@ -6,7 +6,7 @@ Administrative page.
 ### IMPORTS
 
 from flask_appbuilder import AppBuilder, expose, BaseView
-from app import appbuilder
+from egas import appbuilder
 
 
 ### CONSTS & DEFINES

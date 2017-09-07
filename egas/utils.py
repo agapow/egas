@@ -6,7 +6,7 @@ Simple utilities.
 
 from werkzeug.contrib.cache import SimpleCache
 
-from app import app, db
+from egas import app, db
 from . import models
 
 #__all__ = (

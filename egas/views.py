@@ -10,9 +10,8 @@ from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder import ModelView
 from wtforms import validators as wtfval
 
-from app import appbuilder, db
-from app import validators as appval
-
+from egas import appbuilder, db
+from . import validators as appval
 from . import models
 
 
