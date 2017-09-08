@@ -211,17 +211,20 @@ class AboutView (BaseView):
       return self.render_template ('about.html')
 
 
-
-appbuilder.add_view (AboutView, "About this site", category='About')
-
-
-## Registration and coordination
-# create and register everything
 db.create_all()
 
-appbuilder.add_view (AssociationModelView, "Associations", icon="fa-file-o")
-appbuilder.add_view (TagModelView, "Tags", icon="folder-open-o")
-appbuilder.add_view (NewsModelView, "News", icon="newspaper-o")
+for category in ['Help']:
+   appbuilder.add_view (AboutView, "About this site",
+      icon="fa-question-circle", category=category, category_icon='fa-info')
+   appbuilder.add_view (NewsModelView, "News",
+      icon="fa-newspaper-o", category=category)
+
+for category in ['Explore']:
+   appbuilder.add_view (AssociationModelView, "Associations",
+      icon="fa-link", category=category, category_icon='fa-search')
+   appbuilder.add_view (TagModelView, "Tags",
+      icon="fa-tags", category=category)
+
 
 # cleans up permissions from obselete views
 appbuilder.security_cleanup()

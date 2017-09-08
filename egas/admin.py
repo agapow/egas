@@ -28,7 +28,7 @@ class AdminView (BaseView):
 
 
 
-appbuilder.add_view (AdminView, "Upload", category='Admin')
+#appbuilder.add_view (AdminView, "Upload", category='Admin')
 
 
 from wtforms import Form, StringField, FileField, BooleanField
@@ -81,10 +81,9 @@ class MyFormView (SimpleFormView):
         flash (self.message, 'info')
 
 
-appbuilder.add_view (MyFormView, "My form View", icon="fa-group",
-   label='My form View',
-   category="My Forms", category_icon="fa-cogs"
-)
+for category in ['Admin']:
+   appbuilder.add_view (MyFormView, "My form View",
+      icon="fa-upload", category="Admin", category_icon="fa-wrench")
 
 
 ### END ###
