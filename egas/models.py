@@ -4,7 +4,7 @@
 
 from flask_appbuilder import Model
 from flask_appbuilder.models.mixins import AuditMixin
-from sqlalchemy import Table, ForeignKey, Column, Integer, String, Enum, Float
+from sqlalchemy import Table, ForeignKey, Column, Integer, String, Enum, Float, Text
 from sqlalchemy.orm import relationship
 
 #from sqlalchemy import UniqueConstraint
@@ -69,7 +69,7 @@ class Tag (AuditMixin, Model):
    id = Column (Integer, autoincrement=True, primary_key=True)
 
    title = Column (String (64), nullable=False)
-   description = Column (String())
+   description = Column (Text())
 
    associations = relationship ('Association', secondary=tag_membership_table, back_populates='tags')
 
@@ -88,7 +88,7 @@ class News (AuditMixin, Model):
    ## Properties:
    id = Column (Integer, autoincrement=True, primary_key=True)
    title = Column (String (64), nullable=False)
-   body = Column (String(), nullable=False)
+   body = Column (Text(), nullable=False)
 
    ## Accessors:
 

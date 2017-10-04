@@ -1,16 +1,16 @@
 import os
 from flask_appbuilder.security.manager import AUTH_OID, AUTH_REMOTE_USER, AUTH_DB, AUTH_LDAP, AUTH_OAUTH
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.abspath (os.path.dirname (__file__))
 
 
-APP_VERSION = '0.5'
+APP_VERSION = '0.6'
 
 # Your App secret key
 SECRET_KEY = 'd64C<VkCcEf*`0<J;W`={1*F/pq$Ia~-gh[d4>#SAf9ix 3yy`FT/klHGP~7Q?7%'
 
 # The SQLAlchemy connection string.
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-#SQLALCHEMY_DATABASE_URI = 'mysql://myapp@localhost/myapp'
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://egas_user:5np@ss0c@localhost/egas_db'
 #SQLALCHEMY_DATABASE_URI = 'postgresql://root:password@localhost/myapp'
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
@@ -22,7 +22,7 @@ CSRF_ENABLED = True
 # GLOBALS FOR APP Builder
 #------------------------------
 # Uncomment to setup Your App name
-APP_NAME = "EpAs"
+APP_NAME = "EGAs"
 
 # Uncomment to setup Setup an App icon
 APP_ICON = "static/img/logo.png"
