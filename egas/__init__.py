@@ -7,6 +7,7 @@ The actual web application.
 import logging
 from flask import Flask
 from flask_appbuilder import SQLA, AppBuilder
+from flask_appbuilder.menu import Menu
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
@@ -26,7 +27,7 @@ app = Flask (__name__)
 app.config.from_object ('config')
 db = SQLA (app)
 
-appbuilder = AppBuilder (app, db.session)
+appbuilder = AppBuilder (app, db.session, menu=Menu (reverse=False))
 
 migrate = Migrate (app, db)
 manager = Manager (app)

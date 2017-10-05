@@ -68,22 +68,45 @@ class BulkUploadForm (DynamicForm):
 from flask import flash
 from flask_appbuilder import SimpleFormView
 
-class MyFormView (SimpleFormView):
+class BulkUploadView (SimpleFormView):
     form = BulkUploadForm
-    form_title = 'This is my first form view'
+    form_title = 'Bulk upoad of associations'
     message = 'My form was submitted'
 
     def form_get(self, form):
-        form.field1.data = 'This was prefilled'
+      pass
+      # form.field1.data = 'This was prefilled'
 
     def form_post(self, form):
         # post process form
         flash (self.message, 'info')
 
 
-for category in ['Admin']:
-   appbuilder.add_view (MyFormView, "My form View",
-      icon="fa-upload", category="Admin", category_icon="fa-wrench")
+import flask_appbuilder.security.views as sec_views
+
+for cat in ['Admin']:
+   appbuilder.add_view (BulkUploadView, "Bulk upload of associations",
+      icon="fa-upload",
+      category=cat,
+      category_icon="fa-wrench",
+   )
+
+   appbuilder.menu.add_separator (cat)
+
+   # appbuilder.add_view (appbuilder.sm.user_view, "List Users",
+   #    icon="fa-user",
+   #    label="List Users",
+   #    category=cat,
+   #    category_icon="fa-cogs",
+   # )
+   # appbuilder.add_view (sec_views.RoleModelView, "List Roles",
+   #    icon="fa-group",
+   #    label='List Roles',
+   #    category=cat,
+   #    category_icon="fa-cogs",
+   # )
+# role_view.related_views = [self.user_view.__class__]
+
 
 
 ### END ###

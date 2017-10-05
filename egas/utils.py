@@ -13,7 +13,7 @@ from . import models
 #   'simple_repr',
 #)
 
-print ("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
 ### CONSTANTS & DEFINES
 
 CACHE = SimpleCache()
@@ -40,6 +40,8 @@ def utility_processor():
    def date_now(format="%d.m.%Y %H:%M:%S"):
       """ returns the formated datetime """
       return datetime.datetime.now().strftime (format)
+
+
 
    def get_total_associations():
       """

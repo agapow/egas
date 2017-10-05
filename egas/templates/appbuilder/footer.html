@@ -10,6 +10,14 @@
       <b>Total number of associations currently stored:</b> {{ get_total_associations() }}
    </div>
    <div class="col-md-4">
-      <b>Latest news:</b>  {{ get_latest_news() }}
+      <b>Latest news:</b>
+      {% set latest_news = get_latest_news() %}
+      {% if latest_news %}
+         {% set latest_news_date = latest_news.created_on.strftime ('%Y-%m-%d') %}
+         <A HREF="/news/show/{{ latest_news.id }}">"{{ latest_news.title }}" ({{ latest_news_date }})</A>
+      {{ latest_news }}
+      {% else %}
+         <i>-none-</i>
+      {% endif %}
    </div>
 </div>
