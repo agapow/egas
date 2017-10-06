@@ -15,7 +15,6 @@
       {% if latest_news %}
          {% set latest_news_date = latest_news.created_on.strftime ('%Y-%m-%d') %}
          <A HREF="/news/show/{{ latest_news.id }}">"{{ latest_news.title }}" ({{ latest_news_date }})</A>
-      {{ latest_news }}
       {% else %}
          <i>-none-</i>
       {% endif %}
