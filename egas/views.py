@@ -8,6 +8,7 @@ Views for application models and pages.
 from flask import render_template
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder import ModelView
+from flask_appbuilder.widgets import ShowWidget
 from wtforms import validators as wtfval
 
 from egas import appbuilder, db
@@ -114,7 +115,6 @@ class AssociationModelView (ModelView):
       'stat_beta': [appval.PositiveNumber()],
       'stat_stderr': [appval.PositiveNumber()],
       'stat_pval': [appval.PositiveNumber()],
-
    }
 
 
@@ -177,10 +177,17 @@ class NewsModelView (ModelView):
       'body': 'Description',
    }
 
-   ## Listing / showing
+   ## Listing
    # what columns appear in a table/list & the order
    list_columns = ['title']
    base_order = ('created_on','asc')
+
+   ## Showing
+   show_widget = ShowWidget
+   show_template = 'news_show.html'
+   extra_args = {
+      'desc':'description',
+   }
 
    ## Adding / editing
    # what columns are visible in add/edit

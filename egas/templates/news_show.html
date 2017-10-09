@@ -1,0 +1,43 @@
+{% extends "appbuilder/general/model/show.html" %}
+
+
+{% block show_form %}
+
+INC{{ pk }}
+INC{{ desc }}
+INC{{ item }}
+INC{{ widget }}
+
+   <div class="news-content" id="news-content">
+      <H1>hgfghgfhgfhgf</H1>
+      <div class="news-byline">
+         Created by XYZ, date date {{ context }}
+      </div>
+      <div class="news-body">
+         the body!
+      </div>
+   </div>
+
+{{ request }}
+{{ session }}
+   <div class="table-responsive">
+<table class="table table-bordered">
+
+{% for item in include_columns %}
+   <tr>
+        <th class="col-lg-2 col-md-2 col-sm-2">{{label_columns.get(item)}}</th>
+        <td>
+           {% set formatter = formatters_columns.get(item) %}
+           {% set v = value_columns[loop.index-1]%}
+           <span style="white-space: pre-line">{{formatter(v) if formatter else v}}</span>
+        </td>
+   </tr>
+{% endfor %}
+</table></div>
+
+
+   <div class="well well-sm">
+       {{ lib.lnk_back() }}
+   </div>
+
+{% endblock show_form %}

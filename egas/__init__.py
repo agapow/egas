@@ -27,7 +27,11 @@ app = Flask (__name__)
 app.config.from_object ('config')
 db = SQLA (app)
 
-appbuilder = AppBuilder (app, db.session, menu=Menu (reverse=False))
+appbuilder = AppBuilder (
+   app, db.session,
+   menu=Menu (reverse=False),
+   base_template='egas_baselayout.html'
+   )
 
 migrate = Migrate (app, db)
 manager = Manager (app)
