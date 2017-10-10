@@ -3,38 +3,17 @@
 
 {% block show_form %}
 
-INC{{ pk }}
-INC{{ desc }}
-INC{{ item }}
-INC{{ widget }}
-
    <div class="news-content" id="news-content">
-      <H1>hgfghgfhgfhgf</H1>
+      {% set record = get_model (pk) %}
+      <H1>{{ record.title }}</H1>
       <div class="news-byline">
-         Created by XYZ, date date {{ context }}
+         {% set news_created = record.created_on.strftime ('%Y-%m-%d') %}
+         Created by {{ record.created_by }} on {{ news_created }}
       </div>
       <div class="news-body">
-         the body!
+         {{ record.body }}
       </div>
    </div>
-
-{{ request }}
-{{ session }}
-   <div class="table-responsive">
-<table class="table table-bordered">
-
-{% for item in include_columns %}
-   <tr>
-        <th class="col-lg-2 col-md-2 col-sm-2">{{label_columns.get(item)}}</th>
-        <td>
-           {% set formatter = formatters_columns.get(item) %}
-           {% set v = value_columns[loop.index-1]%}
-           <span style="white-space: pre-line">{{formatter(v) if formatter else v}}</span>
-        </td>
-   </tr>
-{% endfor %}
-</table></div>
-
 
    <div class="well well-sm">
        {{ lib.lnk_back() }}

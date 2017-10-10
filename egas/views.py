@@ -168,6 +168,9 @@ class NewsModelView (ModelView):
 
    datamodel = SQLAInterface (models.News)
 
+   def get_model (pk):
+      return NewsModelView.datamodel.get (pk)
+
    # route to nicer url
    route_base = '/news'
 
@@ -183,10 +186,10 @@ class NewsModelView (ModelView):
    base_order = ('created_on','asc')
 
    ## Showing
-   show_widget = ShowWidget
+   # show_widget = ShowWidget
    show_template = 'news_show.html'
    extra_args = {
-      'desc':'description',
+      'get_model': get_model,
    }
 
    ## Adding / editing

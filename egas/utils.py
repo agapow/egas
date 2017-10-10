@@ -62,7 +62,6 @@ def utility_processor():
       val = CACHE.get ('latest_news')
       if val is None:
          val = db.session.query (models.News).order_by (models.News.created_on.desc()).first()
-         print (val)
          if val:
             val = {
                'id': val.id,
@@ -72,12 +71,34 @@ def utility_processor():
          CACHE.set ('latest_news', val, timeout=CACHE_TIMEOUT)
       return val
 
+   def get_model_json (pk):
+      """
+      Get a model record by key & return JSON.
+      """
+      val = db.session.query (models.News).order_by (models.News.created_on.desc()).first()
+      if val:
+         val = {
+            'id': val.id,
+            'title': val.title,
+            'created_on': val.created_on,
+         }
+      return val
+
    return dict (
       date_now=date_now,
       get_total_associations=get_total_associations,
       get_latest_news=get_latest_news,
+      get_model_json=get_model_json,
    )
 
+import jinja2
+
+@jinja2.contextfunction
+def get_context(c):
+    return c
+
+app.jinja_env.globals['context'] = get_context
+app.jinja_env.globals['callable'] = callable
 
 
 ### END ###
