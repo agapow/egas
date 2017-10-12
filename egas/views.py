@@ -14,6 +14,7 @@ from wtforms import validators as wtfval
 from egas import appbuilder, db
 from . import validators as appval
 from . import models
+from . import consts
 
 
 ### CONSTS & DEFINES
@@ -30,20 +31,6 @@ def page_not_found (e):
          base_template=appbuilder.base_template,
          appbuilder=appbuilder
       ), 404
-
-ASSOC_COLS = [
-   'snp_id',
-   'snp_locn_chr',
-   'snp_locn_posn',
-   'snp_base_wild',
-   'snp_base_var',
-   'cpg_id',
-   'cpg_locn_chr',
-   'cpg_locn_posn',
-   'stat_beta',
-   'stat_stderr',
-   'stat_pval',
-]
 
 class AssociationModelView (ModelView):
    """
@@ -73,7 +60,7 @@ class AssociationModelView (ModelView):
 
    ## Listing / showing
    # what columns appear in a table/list & the order
-   list_columns = ASSOC_COLS
+   list_columns = consts.INDATA_FLDS
    base_order = ('snp_id','asc')
 
    # how columns are grouped in individual record view
@@ -98,8 +85,8 @@ class AssociationModelView (ModelView):
 
    ## Adding / editing
    # what columns are visible in add/edit
-   add_columns = ASSOC_COLS
-   edit_columns = ASSOC_COLS
+   add_columns = consts.INDATA_FLDS
+   edit_columns = consts.INDATA_FLDS
 
    ## validation
    validators_columns = {

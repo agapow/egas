@@ -55,6 +55,24 @@ bases = (
    # 'N',
 )
 
+INDATA_FLDS = (
+   'snp_id',
+   'snp_locn_chr',
+   'snp_locn_posn',
+
+   'snp_base_wild',
+   'snp_base_var',
+
+   'cpg_id',
+   'cpg_locn_chr',
+   'cpg_locn_posn',
+
+   'stat_beta',
+   'stat_stderr',
+   'stat_pval',
+)
+
+
 ### CODE ###
 
 ### END ###

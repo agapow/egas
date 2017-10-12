@@ -80,15 +80,17 @@ LANGUAGES = {
 # Image and file configuration
 #---------------------------------------------------
 # The file upload folder, when using models with files
-UPLOAD_FOLDER = basedir + '/app/static/uploads/'
+UPLOAD_FOLDER = basedir + '/egas/static/uploads/'
 
 # The image upload folder, when using models with images
-IMG_UPLOAD_FOLDER = basedir + '/app/static/uploads/'
+IMG_UPLOAD_FOLDER = basedir + '/egas/static/uploads/'
 
 # The image upload url, when using models with images
 IMG_UPLOAD_URL = '/static/uploads/'
 # Setup image size default is (300, 200, True)
 #IMG_SIZE = (300, 200, True)
+
+FILE_ALLOWED_EXTENSIONS = ('csv')
 
 # Theme configuration
 # these are located on static/appbuilder/css/themes
